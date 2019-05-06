@@ -158,7 +158,7 @@ $(document).ready(function() {
             autoplayHoverPause: true,
             dots: true,
             autoplay: true,
-            nav: true,
+            nav: false,
             navText: ["<span class='lnr lnr-arrow-up'></span>", "<span class='lnr lnr-arrow-down'></span>"],
             responsive: {
                 0: {
