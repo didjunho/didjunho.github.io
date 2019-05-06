@@ -2335,7 +2335,22 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .home-about-area {
-  background: #91dff7;
+  background: -moz-linear-gradient(0deg, #8490ff 0%, #62bdfc 100%);
+  background: -webkit-linear-gradient(0deg, #8490ff 0%, #62bdfc 100%);
+  background: -ms-linear-gradient(0deg, #8490ff 0%, #62bdfc 100%);
+  padding:60px;
+}
+
+.portfolio-area {
+  background: #f9e1f1;
+}
+
+.facts-area {
+  background: black;
+}
+
+.brands-area {
+  background: #f9f9ff
 }
 
 .primary-btn {
@@ -2729,7 +2744,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*--------- End Portfolio Area -------------*/
 /*--------- start testimonial area  -------------*/
 .testimonial-area {
-  background-color: #f9f9ff;
+  background-color: #d8fbfa;
 }
 
 .testimonial-area .owl-controls {
