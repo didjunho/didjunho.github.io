@@ -2456,6 +2456,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*-------- Start Banner Area ------------*/
 .banner-area {
   padding-top: 100px;
+  padding-bottom: 0px;
   background: #f9f9ff;
 }
 
