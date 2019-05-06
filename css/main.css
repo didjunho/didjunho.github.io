@@ -2334,6 +2334,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   -webkit-text-fill-color: transparent;
 }
 
+.home-about-area {
+  background: #91dff7;
+}
+
 .primary-btn {
   background: #8490ff;
   line-height: 42px;
