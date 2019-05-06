@@ -2455,7 +2455,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /*-------- Start Banner Area ------------*/
 .banner-area {
-  padding-top: 60px;
+  padding-top: 100px;
   background: #f9f9ff;
 }
 
@@ -2742,6 +2742,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*--------- End Portfolio Area -------------*/
 /*--------- start testimonial area  -------------*/
 .testimonial-area {
+  padding-top: 80px;
+  padding-bottom: 80px;
   background-color: #d8fbfa;
 }
 
