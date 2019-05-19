@@ -2338,8 +2338,16 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding-bottom:250px;
 }
 
+#about {
+  background: #f25757;
+}
+
 .portfolio-area {
-  background: #f9e1f1;
+  background: black;
+}
+
+.timeline {
+  background: #f2f2ff;
 }
 
 .facts-area {
@@ -2347,7 +2355,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .brands-area {
-  background: #f9f9ff
 }
 
 .primary-btn {
@@ -4330,7 +4337,7 @@ dl.accordion.time-line:before {
 /*  Footer Styles
 /* =================================== */
 .footer-area {
-  background-color: #04091e;
+  background-color: black;
 }
 
 .single-footer-widget h4 {

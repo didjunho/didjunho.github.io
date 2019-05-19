@@ -240,6 +240,10 @@ $(document).ready(function() {
                     }
                 }
 
+                if (target.outerHeight() == $('#about').outerHeight()) {
+                    top_space = 0;
+                }
+
                 $('html, body').animate({
                     scrollTop: target.offset().top - top_space
                 }, 1500, 'easeInOutExpo');
