@@ -2355,7 +2355,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .brands-area {
-  background: #ffd166;
+  background: salmon;
 }
 
 .primary-btn {
@@ -4338,4 +4338,17 @@ dl.accordion.time-line:before {
   background: black;
   text-align: center;
   text-align: justify;
+}
+
+.row-foot {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon-cog {
+  color: default;
 }
