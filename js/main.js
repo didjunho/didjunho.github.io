@@ -119,6 +119,12 @@ $(document).ready(function() {
         speed: 400
     });
 
+    $(".smoothscroll").click(function() {
+        $('html,body').animate({
+            scrollTop: 0},
+            2000);
+    });
+
     //------- Accordian Js --------//  
 
     var allPanels = $(".accordion > dd").hide();
