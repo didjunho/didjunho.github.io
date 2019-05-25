@@ -2329,7 +2329,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   background: -moz-linear-gradient(0deg, #8490ff 0%, #62bdfc 100%);
   background: -webkit-linear-gradient(0deg, #8490ff 0%, #62bdfc 100%);
   background: -ms-linear-gradient(0deg, #8490ff 0%, #62bdfc 100%);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -3265,7 +3264,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   top: 50%;
   left: 10px;
   font-family: 'FontAwesome';
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -3338,7 +3336,6 @@ dl.accordion.time-line:before {
   top: 50%;
   left: 0;
   font-family: 'icomoon';
-  speak: none;
   font-style: normal;
   font-weight: bold;
   font-variant: normal;
