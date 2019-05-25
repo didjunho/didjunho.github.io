@@ -29,7 +29,6 @@
  * @param  selector    selector OR undefined
  * @author Brian Cherne <brian(at)cherne(dot)net>
  */
-
 ;(function(factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
