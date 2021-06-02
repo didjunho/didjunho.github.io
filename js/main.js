@@ -1,325 +1,331 @@
-const nextIcon = '<img class="arrows" src="./images/right-arrow.svg" alt="right">';
-const prevIcon = '<img class="arrows" src="./images/left-arrow.svg" alt="left" >';
+$(document).ready(function() {
+    "use strict";
 
-$('.owl-carousel').owlCarousel({
-  loop:true,
-  autoplay: true,
-  margin:10,
-  nav: true,
-  navText: [
-  prevIcon,
-  nextIcon
-],
-  responsive:{
-      0:{
-          items:1
-      },
-      600:{
-          items:2
-      },
-      1000:{
-          items:3
+
+
+    //------- Niceselect  js --------//  
+
+    if (document.getElementById("default-select")) {
+        $('select').niceSelect();
+    };
+    if (document.getElementById("default-select2")) {
+        $('select').niceSelect();
+    };
+    if (document.getElementById("service-select")) {
+        $('select').niceSelect();
+    };    
+
+    //------- Lightbox  js --------//  
+
+    $('.img-pop-up').magnificPopup({
+        type: 'image',
+        gallery: {
+            enabled: true
+        }
+    });
+
+    $('.play-btn').magnificPopup({
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+    });
+
+
+    //------- Tabs Js --------//  
+    if (document.getElementById("horizontalTab")) {
+
+        $('#horizontalTab').jqTabs({
+            direction: 'horizontal',
+            duration: 200
+        });
+    
+        };  
+
+        
+    //------- Counter  js --------//  
+
+     if(document.getElementById("facts-area")){
+      $('.counter').counterUp({
+          delay: 10,
+          time: 1000
+      });
+    }
+
+    //------- Skill  js --------//  
+
+    $('.skill').simpleSkillbar();
+
+    //------- Filter  js --------//  
+
+      $('.filters ul li').click(function(){
+        $('.filters ul li').removeClass('active');
+        $(this).addClass('active');
+        
+        var data = $(this).attr('data-filter');
+        $grid.isotope({
+          filter: data
+        })
+      });
+
+
+      if(document.getElementById("portfolio")){
+            var $grid = $(".grid").isotope({
+              itemSelector: ".all",
+              percentPosition: true,
+              masonry: {
+                columnWidth: ".all"
+              }
+            })
+      };
+
+
+    //------- Timeline js --------//  
+
+
+    $('.content').each( function(i){
+      
+      var bottom_of_object= $(this).offset().top + $(this).outerHeight();
+      var bottom_of_window = $(window).height();
+      
+      if( bottom_of_object > bottom_of_window){
+        $(this).addClass('hidden');
       }
-  }
-})
+    });
 
-$(document).ready(function(){
-    $(this).scrollTop(0);
+
+    $(window).scroll( function(){
+        /* Check the location of each element hidden */
+        $('.hidden').each( function(i){
+          
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+          
+            /* If the object is completely visible in the window, fadeIn it */
+            if( bottom_of_window > bottom_of_object ){
+              $(this).animate({'opacity':'1'},700);
+            }
+        });
+    });
+
+
+    //------- Superfish nav menu  js --------//  
+
+    $('.nav-menu').superfish({
+        animation: {
+            opacity: 'show'
+        },
+        speed: 400
+    });
+
+    $(".smoothscroll").click(function() {
+        $('html,body').animate({
+            scrollTop: 0},
+            2000);
+    });
+
+    //------- Accordian Js --------//  
+
+    var allPanels = $(".accordion > dd").hide();
+    allPanels.first().slideDown("easeOutExpo");
+    $(".accordion").each(function() {
+        $(this).find("dt > a").first().addClass("active").parent().next().css({
+            display: "block"
+        });
+    });
+
+
+     $(document).on('click', '.accordion > dt > a', function(e) {
+
+        var current = $(this).parent().next("dd");
+        $(this).parents(".accordion").find("dt > a").removeClass("active");
+        $(this).addClass("active");
+        $(this).parents(".accordion").find("dd").slideUp("easeInExpo");
+        $(this).parent().next().slideDown("easeOutExpo");
+
+        return false;
+
+    });
+
+    //------- Owl Carusel  js --------//  
+
+    $('.active-review-carusel').owlCarousel({
+        items:1,
+        loop:true,
+        autoplay:true,
+        autoplayHoverPause: true,        
+        margin:30,
+        dots: true
+    });
+
+     $('.active-testimonial').owlCarousel({
+            items: 2,
+            loop: true,
+            margin: 30,
+            autoplayHoverPause: true,
+            dots: true,
+            autoplay: true,
+            nav: false,
+            navText: ["<span class='lnr lnr-arrow-up'></span>", "<span class='lnr lnr-arrow-down'></span>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                480: {
+                    items: 1,
+                },
+                768: {
+                    items: 2,
+                }
+            }
+        });
+
+
+
+        $('.active-brand-carusel').owlCarousel({
+            items: 3,
+            loop: true,
+            autoplayHoverPause: true,
+            autoplay: true,
+    
+        });
+
+    //------- Mobile Nav  js --------//  
+
+    if ($('#nav-menu-container').length) {
+        var $mobile_nav = $('#nav-menu-container').clone().prop({
+            id: 'mobile-nav'
+        });
+        $mobile_nav.find('> ul').attr({
+            'class': '',
+            'id': ''
+        });
+        $('body').append($mobile_nav);
+        $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>');
+        $('body').append('<div id="mobile-body-overly"></div>');
+        $('#mobile-nav').find('.menu-has-children').prepend('<i class="lnr lnr-chevron-down"></i>');
+
+        $(document).on('click', '.menu-has-children i', function(e) {
+            $(this).next().toggleClass('menu-item-active');
+            $(this).nextAll('ul').eq(0).slideToggle();
+            $(this).toggleClass("lnr-chevron-up lnr-chevron-down");
+        });
+
+        $(document).on('click', '#mobile-nav-toggle', function(e) {
+            $('body').toggleClass('mobile-nav-active');
+            $('#mobile-body-overly').toggle();
+        });
+
+            $(document).on('click', function(e) {
+            var container = $("#mobile-nav, #mobile-nav-toggle");
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                if ($('body').hasClass('mobile-nav-active')) {
+                    $('body').removeClass('mobile-nav-active');
+                    $('#mobile-body-overly').fadeOut();
+                }
+            }
+        });
+    } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
+        $("#mobile-nav, #mobile-nav-toggle").hide();
+    }
+
+    //------- Smooth Scroll  js --------//  
+
+    $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            if (target.length) {
+                var top_space = 0;
+
+                if ($('#header').length) {
+                    top_space = $('#header').outerHeight();
+
+                    if (!$('#header').hasClass('header-fixed')) {
+                        top_space = top_space;
+                    }
+                }
+
+                if (target.outerHeight() == $('#about').outerHeight()) {
+                    top_space = 0;
+                }
+
+                $('html, body').animate({
+                    scrollTop: target.offset().top - top_space
+                }, 1500, 'easeInOutExpo');
+
+                if ($(this).parents('.nav-menu').length) {
+                    $('.nav-menu .menu-active').removeClass('menu-active');
+                    $(this).closest('li').addClass('menu-active');
+                }
+
+                if ($('body').hasClass('mobile-nav-active')) {
+                    $('body').removeClass('mobile-nav-active');
+                    $('#mobile-nav-toggle i').toggleClass('lnr-times lnr-bars');
+                    $('#mobile-body-overly').fadeOut();
+                }
+                return false;
+            }
+        }
+    });
+
+    $(document).ready(function() {
+
+        $('html, body').hide();
+
+        if (window.location.hash) {
+
+            setTimeout(function() {
+
+                $('html, body').scrollTop(0).show();
+
+                $('html, body').animate({
+
+                    scrollTop: $(window.location.hash).offset().top - 108
+
+                }, 1000)
+
+            }, 0);
+
+        } else {
+
+            $('html, body').show();
+
+        }
+
+    });
+
+
+    jQuery(document).ready(function($) {
+        // Get current path and find target link
+        var path = window.location.pathname.split("/").pop();
+
+        // Account for home page with empty path
+        if (path == '') {
+            path = 'index.html';
+        }
+
+        var target = $('nav a[href="' + path + '"]');
+        // Add active class to target link
+        target.addClass('menu-active');
+    });
+
+    $(document).ready(function() {
+        if ($('.menu-has-children ul>li a').hasClass('menu-active')) {
+            $('.menu-active').closest("ul").parentsUntil("a").addClass('parent-active');
+        }
+    });
+
+
+    //------- Header Scroll Class  js --------//  
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('#header').addClass('header-scrolled');
+        } else {
+            $('#header').removeClass('header-scrolled');
+        }
+    });
+
+    
 });
-
-//fade in on scroll for comeright1
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".comeright1");
-
-for (var i = 0; i < tags.length; i++) {
-var comeright1 = tags[i];
-
-if ($(comeright1).position().top < pageBottom) {
-$(comeright1).addClass("visible");
-} else {
-$(comeright1).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for comeright2
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".comeright2");
-
-for (var i = 0; i < tags.length; i++) {
-var comeright2 = tags[i];
-
-if ($(comeright2).position().top < pageBottom) {
-$(comeright2).addClass("visible");
-} else {
-$(comeright2).removeClass("visible");
-}
-}
-});
-
-
-
-//fade in on scroll for comeright3
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".comeright3");
-
-for (var i = 0; i < tags.length; i++) {
-var comeright3 = tags[i];
-
-if ($(comeright3).position().top < pageBottom) {
-$(comeright3).addClass("visible");
-} else {
-$(comeright3).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for topin
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".topin");
-
-for (var i = 0; i < tags.length; i++) {
-var topin = tags[i];
-
-if ($(topin).position().top < pageBottom) {
-$(topin).addClass("visible");
-} else {
-$(topin).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for comeup
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".comeup");
-
-for (var i = 0; i < tags.length; i++) {
-var comeup = tags[i];
-
-if ($(comeup).position().top < pageBottom) {
-$(comeup).addClass("visible");
-} else {
-$(comeup).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for worksDown
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".worksDown");
-
-for (var i = 0; i < tags.length; i++) {
-var worksDown = tags[i];
-
-if ($(worksDown).position().top < pageBottom) {
-$(worksDown).addClass("visible");
-} else {
-$(worksDown).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for worksUp
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".worksUp");
-
-for (var i = 0; i < tags.length; i++) {
-var worksUp = tags[i];
-
-if ($(worksUp).position().top < pageBottom) {
-$(worksUp).addClass("visible");
-} else {
-$(worksUp).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for comeleft
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".comeleft");
-
-for (var i = 0; i < tags.length; i++) {
-var comeleft = tags[i];
-
-if ($(comeleft).position().top < pageBottom) {
-$(comeleft).addClass("visible");
-} else {
-$(comeleft).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for timeDown
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".timeDown");
-
-for (var i = 0; i < tags.length; i++) {
-var timeDown = tags[i];
-
-if ($(timeDown).position().top < pageBottom) {
-$(timeDown).addClass("visible");
-} else {
-$(timeDown).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for fadin
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".fadin");
-
-for (var i = 0; i < tags.length; i++) {
-var fadin = tags[i];
-
-if ($(fadin).position().top < pageBottom) {
-$(fadin).addClass("visible");
-} else {
-$(fadin).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for conUp
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".conUp");
-
-for (var i = 0; i < tags.length; i++) {
-var conUp = tags[i];
-
-if ($(conUp).position().top < pageBottom) {
-$(conUp).addClass("visible");
-} else {
-$(conUp).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for conUp2
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".conUp2");
-
-for (var i = 0; i < tags.length; i++) {
-var conUp2 = tags[i];
-
-if ($(conUp2).position().top < pageBottom) {
-$(conUp2).addClass("visible");
-} else {
-$(conUp2).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for conUp3
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".conUp3");
-
-for (var i = 0; i < tags.length; i++) {
-var conUp3 = tags[i];
-
-if ($(conUp3).position().top < pageBottom) {
-$(conUp3).addClass("visible");
-} else {
-$(conUp3).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for conUp4
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".conUp4");
-
-for (var i = 0; i < tags.length; i++) {
-var conUp4 = tags[i];
-
-if ($(conUp4).position().top < pageBottom) {
-$(conUp4).addClass("visible");
-} else {
-$(conUp4).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for conUp5
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".conUp5");
-
-for (var i = 0; i < tags.length; i++) {
-var conUp5 = tags[i];
-
-if ($(conUp5).position().top < pageBottom) {
-$(conUp5).addClass("visible");
-} else {
-$(conUp5).removeClass("visible");
-}
-}
-});
-
-//Timeline
-//fade in on scroll for comeinrightproj
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".comeinrightproj");
-
-for (var i = 0; i < tags.length; i++) {
-var comeinrightproj = tags[i];
-
-if ($(comeinrightproj).position().top < pageBottom) {
-$(comeinrightproj).addClass("visible");
-} else {
-$(comeinrightproj).removeClass("visible");
-}
-}
-});
-
-//fade in on scroll for comeinleftproj
-$(document).on("scroll", function() {
-var pageTop = $(document).scrollTop();
-var pageBottom = pageTop + $(window).height();
-var tags = $(".comeinleftproj");
-
-for (var i = 0; i < tags.length; i++) {
-var comeinleftproj = tags[i];
-
-if ($(comeinleftproj).position().top < pageBottom) {
-$(comeinleftproj).addClass("visible");
-} else {
-$(comeinleftproj).removeClass("visible");
-}
-}
-});
-
-
-/*Hover*/
-
-
